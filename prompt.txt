@@ -6,10 +6,14 @@ Our Pitch: {{pitch}}
 Tone: {{tone}}
 
 Requirements:
-- Subject line ≤ 60 characters, benefit-driven (e.g., “Lead HR AI at [Your Company]”)
-- Body: exactly 3 paragraphs, each 1–2 sentences
-  1. Greet + one‐sentence hook referencing background.
-  2. One‐sentence value: what we’re building and why their skills matter (no buzzwords).
-  3. One‐sentence CTA: ask for a 10-minute call and suggest two specific days.
-- Do not include extra closing sentences or sign-off beyond “Best regards, [Your Name]”.
-- Avoid clichés like “cutting-edge” or “exciting opportunity.”
+- Subject line ≤ 60 characters, benefit-driven (e.g. “Lead AI Mobile Banking UX at [Your Company]”)
+- Body: exactly 3 paragraphs, each 1 sentence:
+  1. Greeting + hook referencing their background (include any company name if available).
+  2. One-sentence value: describe the specific project or feature and how their skills will contribute concretely.
+  3. One-sentence CTA: ask for a 10-minute call and suggest two specific days (e.g., “Tuesday or Thursday”).
+- Do not include extra sentences or paragraphs.
+- Avoid clichés or buzzwords (“exciting,” “innovative,” “cutting-edge,” “next-gen,” etc.).
+- End with:
+  
+  Best regards,  
+  [Your Name]
