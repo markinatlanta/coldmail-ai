@@ -21,35 +21,52 @@ export default function Home() {
   const [credits, setCredits] = useState(0);
   const [redeemCode, setRedeemCode] = useState('');
   const [redeemMsg, setRedeemMsg] = useState('');
+  const [usedCodes, setUsedCodes] = useState([]);
 
-  // Load credits from localStorage on mount
+  // Load credits and used codes from localStorage on mount
   useEffect(() => {
-    const stored = parseInt(localStorage.getItem('credits') || '0', 10);
-    setCredits(stored);
+    const storedCredits = parseInt(localStorage.getItem('credits') || '0', 10);
+    setCredits(storedCredits);
+
+    const storedUsed = JSON.parse(localStorage.getItem('usedCodes') || '[]');
+    setUsedCodes(storedUsed);
   }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Redeem purchase code to add credits
+  // Redeem purchase code to add credits, with one-time use guard
   const handleRedeem = () => {
     const code = redeemCode.trim().toUpperCase();
+
+    if (usedCodes.includes(code)) {
+      setRedeemMsg('That code has already been used.');
+      setRedeemCode('');
+      return;
+    }
+
     if (BUNDLES[code]) {
       const added = BUNDLES[code];
-      const updated = credits + added;
-      setCredits(updated);
-      localStorage.setItem('credits', updated);
+      const updatedCredits = credits + added;
+      setCredits(updatedCredits);
+      localStorage.setItem('credits', updatedCredits);
+
+      const newUsedCodes = [...usedCodes, code];
+      setUsedCodes(newUsedCodes);
+      localStorage.setItem('usedCodes', JSON.stringify(newUsedCodes));
+
       setRedeemMsg(`Success! You’ve added ${added} credits.`);
     } else {
       setRedeemMsg('Invalid code. Please check your purchase email.');
     }
+
     setRedeemCode('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Gate on credits
+
     if (credits <= 0) {
       setRedeemMsg('No credits left. Please redeem a code.');
       return;
@@ -74,6 +91,7 @@ export default function Home() {
     } catch {
       setResult('Error generating email. Please try again.');
     }
+
     setLoading(false);
   };
 
@@ -123,7 +141,7 @@ export default function Home() {
               {redeemMsg && <p className="mt-2 text-sm">{redeemMsg}</p>}
             </div>
 
-            {/* Form */}
+            {/* Email Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block mb-1 font-medium">Candidate Name</label>
@@ -138,7 +156,7 @@ export default function Home() {
               </div>
 
               <div>
-                <label className="block mb-1 font-medium">Candidate's current (or last) Job Title</label>
+                <label className="block mb-1 font-medium">Job Title</label>
                 <input
                   name="title"
                   value={form.title}
