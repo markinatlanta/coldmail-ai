@@ -45,7 +45,7 @@ export default function Home() {
 
             {/* Title */}
             <h1 className="text-3xl font-bold mb-6 text-center">
-              ColdMail AI for Recruiters by JKS Advisory
+              ColdMail AI for Recruiters<br><h2>by JKS Advisory</h2>
             </h1>
 
             {/* Form */}
