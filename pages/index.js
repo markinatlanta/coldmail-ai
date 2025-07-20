@@ -44,9 +44,12 @@ export default function Home() {
             <img src="/logo.png" alt="JKS Advisory" className="mx-auto mb-4 w-32" />
 
             {/* Title */}
-            <h1 className="text-3xl font-bold mb-6 text-center">
-              ColdMail AI for Recruiters by JKS Advisory</h1>
-            
+            <h1 className="text-3xl font-bold mb-1 text-center">
+              ColdMail AI for Recruiters
+            </h1>
+            <p className="text-center text-sm text-gray-600 mb-6">
+              by JKS Advisory
+            </p>
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
