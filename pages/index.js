@@ -138,7 +138,7 @@ export default function Home() {
               </div>
 
               <div>
-                <label className="block mb-1 font-medium">Job Title</label>
+                <label className="block mb-1 font-medium">Candidate's current (or last) Job Title</label>
                 <input
                   name="title"
                   value={form.title}
