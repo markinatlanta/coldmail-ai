@@ -6,9 +6,10 @@ Our Pitch: {{pitch}}
 Tone: {{tone}}
 
 Requirements:
-- Subject line ≤ 60 characters, benefit-driven (“Lead HR AI at [Your Company]”)
-- Body: 3 paragraphs, 1–2 sentences each
-   1. Quick greeting + hook referencing their background
-   2. What you’re building and why their skills are critical
-   3. Specific CTA: suggest days/times for a 10-minute chat
+- Subject line ≤ 60 characters, benefit-driven (e.g., “Lead HR AI at [Your Company]”)
+- Body: exactly 3 paragraphs, each 1–2 sentences
+  1. Greet + one‐sentence hook referencing background.
+  2. One‐sentence value: what we’re building and why their skills matter (no buzzwords).
+  3. One‐sentence CTA: ask for a 10-minute call and suggest two specific days.
+- Do not include extra closing sentences or sign-off beyond “Best regards, [Your Name]”.
 - Avoid clichés like “cutting-edge” or “exciting opportunity.”
