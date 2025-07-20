@@ -23,7 +23,7 @@ export default function Home() {
   const [redeemMsg, setRedeemMsg] = useState('');
   const [usedCodes, setUsedCodes] = useState([]);
 
-  // Load credits and used codes from localStorage on mount
+  // Load credits and usedCodes from localStorage on mount
   useEffect(() => {
     const storedCredits = parseInt(localStorage.getItem('credits') || '0', 10);
     setCredits(storedCredits);
@@ -36,29 +36,31 @@ export default function Home() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Redeem purchase code to add credits, with one-time use guard
+  // Redeem code handler with one-time-use guard
   const handleRedeem = () => {
     const code = redeemCode.trim().toUpperCase();
+    setRedeemMsg('');
 
-    if (usedCodes.includes(code)) {
+    if (!code) {
+      setRedeemMsg('Please enter a code.');
+    } else if (!BUNDLES[code]) {
+      setRedeemMsg('Invalid code. Please check your purchase email.');
+    } else if (usedCodes.includes(code)) {
       setRedeemMsg('That code has already been used.');
-      setRedeemCode('');
-      return;
-    }
-
-    if (BUNDLES[code]) {
+    } else {
       const added = BUNDLES[code];
-      const updatedCredits = credits + added;
-      setCredits(updatedCredits);
-      localStorage.setItem('credits', updatedCredits);
+      const newTotal = credits + added;
 
-      const newUsedCodes = [...usedCodes, code];
-      setUsedCodes(newUsedCodes);
-      localStorage.setItem('usedCodes', JSON.stringify(newUsedCodes));
+      // Update credits
+      setCredits(newTotal);
+      localStorage.setItem('credits', newTotal);
+
+      // Mark code as used
+      const newUsed = [...usedCodes, code];
+      setUsedCodes(newUsed);
+      localStorage.setItem('usedCodes', JSON.stringify(newUsed));
 
       setRedeemMsg(`Success! You’ve added ${added} credits.`);
-    } else {
-      setRedeemMsg('Invalid code. Please check your purchase email.');
     }
 
     setRedeemCode('');
@@ -66,6 +68,8 @@ export default function Home() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setResult('');
+    setRedeemMsg('');
 
     if (credits <= 0) {
       setRedeemMsg('No credits left. Please redeem a code.');
@@ -73,12 +77,11 @@ export default function Home() {
     }
 
     setLoading(true);
-    setResult('');
 
     // Deduct one credit
-    const newCount = credits - 1;
-    setCredits(newCount);
-    localStorage.setItem('credits', newCount);
+    const remaining = credits - 1;
+    setCredits(remaining);
+    localStorage.setItem('credits', remaining);
 
     try {
       const res = await fetch('/api/generate-email', {
@@ -102,10 +105,8 @@ export default function Home() {
 
           {/* Form Section */}
           <div className="flex-1">
-            {/* Logo */}
             <img src="/logo.png" alt="JKS Advisory" className="mx-auto mb-4 w-32" />
 
-            {/* Title */}
             <h1 className="text-3xl font-bold mb-1 text-center">
               ColdMail AI for Recruiters
             </h1>
@@ -237,7 +238,6 @@ export default function Home() {
 
         </div>
 
-        {/* Footer */}
         <footer className="mt-8 text-center text-sm text-gray-500">
           Powered by{' '}
           <a
