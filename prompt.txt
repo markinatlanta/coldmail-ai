@@ -6,14 +6,15 @@ Our Pitch: {{pitch}}
 Tone: {{tone}}
 
 Requirements:
-- Subject line ≤ 60 characters, benefit-driven, **start with an active verb** (e.g. “Automate Threat Detection at [Your Company]” or “Lead AI Mobile Banking UX at [Your Company]”).
-- Body: exactly 3 paragraphs, each 1 sentence:
-  1. Greeting + personalized hook referencing their background or past company (no “Your expertise…”).
-  2. One-sentence value: describe the specific project, feature, or metric (e.g., “AWS infrastructure,” “50 MW solar builds,” “AI-powered budgeting UI”) and how their skills apply.
-  3. One-sentence CTA: ask for a 10-minute call and suggest two specific days (e.g., “Tuesday or Thursday”).
-- Do **not** use filler verbs or buzzwords (“join,” “autonomous,” “innovative,” “exciting,” “next-gen,” “shaping the future,” etc.).
-- **End exactly** with:
-  
-  Best regards,  
+- Subject line ≤ 60 characters, benefit-driven, start with an active verb (e.g. “Automate Threat Detection at [Your Company]”).
+- Body: exactly 3 paragraphs, each 1–2 sentences:
+  1. Greeting that uses their name and a hook referencing their background or past company (e.g. “Hi Alex, I saw your SIEM work at Palo Alto Networks…”).
+  2. One or two sentences describing the specific project or feature and how their skills will apply concretely (include metrics or platforms where possible).
+  3. One or two sentences for a clear CTA: ask for a 10-minute call and suggest two specific days (e.g. “Tuesday or Thursday next week”).
+- Do not use filler words or buzzwords (“autonomous,” “exciting,” “innovative,” etc.).
+- End exactly with:
+
+  Best regards,
   [Your Name]
+
 
