@@ -1,4 +1,11 @@
-import { useState } from 'react';
+// pages/index.js
+import { useState, useEffect } from 'react';
+
+const BUNDLES = {
+  STARTER50: 50,
+  PRO250: 250,
+  RECRUITER500: 500
+};
 
 export default function Home() {
   const [form, setForm] = useState({
@@ -11,14 +18,51 @@ export default function Home() {
   const [result, setResult] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const [credits, setCredits] = useState(0);
+  const [redeemCode, setRedeemCode] = useState('');
+  const [redeemMsg, setRedeemMsg] = useState('');
+
+  // Load credits from localStorage on mount
+  useEffect(() => {
+    const stored = parseInt(localStorage.getItem('credits') || '0', 10);
+    setCredits(stored);
+  }, []);
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Redeem purchase code to add credits
+  const handleRedeem = () => {
+    const code = redeemCode.trim().toUpperCase();
+    if (BUNDLES[code]) {
+      const added = BUNDLES[code];
+      const updated = credits + added;
+      setCredits(updated);
+      localStorage.setItem('credits', updated);
+      setRedeemMsg(`Success! You’ve added ${added} credits.`);
+    } else {
+      setRedeemMsg('Invalid code. Please check your purchase email.');
+    }
+    setRedeemCode('');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Gate on credits
+    if (credits <= 0) {
+      setRedeemMsg('No credits left. Please redeem a code.');
+      return;
+    }
+
     setLoading(true);
     setResult('');
+
+    // Deduct one credit
+    const newCount = credits - 1;
+    setCredits(newCount);
+    localStorage.setItem('credits', newCount);
+
     try {
       const res = await fetch('/api/generate-email', {
         method: 'POST',
@@ -37,7 +81,7 @@ export default function Home() {
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-4xl">
         <div className="flex flex-col lg:flex-row gap-8">
-          
+
           {/* Form Section */}
           <div className="flex-1">
             {/* Logo */}
@@ -50,6 +94,34 @@ export default function Home() {
             <p className="text-center text-sm text-gray-600 mb-6">
               by JKS Advisory
             </p>
+
+            {/* Credit Balance */}
+            <div className="mb-4 text-center">
+              You have <span className="font-bold">{credits}</span> credits remaining.
+            </div>
+
+            {/* Redeem Code */}
+            <div className="mb-6 p-4 bg-gray-100 rounded-lg">
+              <label className="block mb-2 font-medium">Redeem Code</label>
+              <div className="flex gap-2">
+                <input
+                  value={redeemCode}
+                  onChange={(e) => {
+                    setRedeemCode(e.target.value);
+                    setRedeemMsg('');
+                  }}
+                  placeholder="Enter code"
+                  className="flex-1 px-3 py-2 border rounded-lg"
+                />
+                <button
+                  onClick={handleRedeem}
+                  className="px-4 py-2 bg-green-600 text-white rounded-lg"
+                >
+                  Redeem
+                </button>
+              </div>
+              {redeemMsg && <p className="mt-2 text-sm">{redeemMsg}</p>}
+            </div>
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
