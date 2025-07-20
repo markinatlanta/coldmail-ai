@@ -1,5 +1,7 @@
 // pages/api/generate-email.js
 import OpenAI from "openai";
+import fs from "fs";
+import path from "path";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -16,18 +18,17 @@ export default async function handler(req, res) {
     apiKey: process.env.OPENAI_API_KEY
   });
 
-  // Build prompt
-  const userPrompt = `
-You're a recruiter writing a cold email to a candidate.
-
-Candidate Name: ${name}
-Job Title: ${title}
-Background/Skills: ${skills}
-Your Pitch: ${pitch}
-Tone: ${tone}
-
-Write a 3-sentence subject line and a 5–7 sentence cold email that is concise, relevant, and human. Avoid clichés and sound natural. End with a clear call to action.
-`;
+  // Load & fill prompt template
+  const template = fs.readFileSync(
+    path.resolve(process.cwd(), "prompt.txt"),
+    "utf-8"
+  );
+  const userPrompt = template
+    .replace("{{name}}", name)
+    .replace("{{title}}", title)
+    .replace("{{skills}}", skills)
+    .replace("{{pitch}}", pitch)
+    .replace("{{tone}}", tone);
 
   try {
     const completion = await openai.chat.completions.create({
