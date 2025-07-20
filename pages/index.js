@@ -72,7 +72,7 @@ export default function Home() {
     setRedeemMsg('');
 
     if (credits <= 0) {
-      setRedeemMsg('No credits left. Please redeem a code.');
+      setRedeemMsg('No credits left.');
       return;
     }
 
@@ -141,6 +141,38 @@ export default function Home() {
               </div>
               {redeemMsg && <p className="mt-2 text-sm">{redeemMsg}</p>}
             </div>
+
+            {/* Buy More Credits Banner */}
+            {credits <= 0 && (
+              <div className="mb-6 p-4 bg-yellow-100 rounded-lg text-center">
+                <p className="mb-2 font-medium text-yellow-800">
+                  You’re out of credits—get more to keep generating emails:
+                </p>
+                <div className="flex justify-center gap-2">
+                  <a
+                    href="https://payhip.com/buy/STARTER50"
+                    target="_blank"
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                  >
+                    Buy 50 Credits — $5
+                  </a>
+                  <a
+                    href="https://payhip.com/buy/PRO250"
+                    target="_blank"
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                  >
+                    Buy 250 Credits — $15
+                  </a>
+                  <a
+                    href="https://payhip.com/buy/RECRUITER500"
+                    target="_blank"
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                  >
+                    Buy 500 Credits — $25
+                  </a>
+                </div>
+              </div>
+            )}
 
             {/* Email Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
