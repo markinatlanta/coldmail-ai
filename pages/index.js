@@ -45,8 +45,8 @@ export default function Home() {
 
             {/* Title */}
             <h1 className="text-3xl font-bold mb-6 text-center">
-              ColdMail AI for Recruiters<br><h2>by JKS Advisory</h2>
-            </h1>
+              ColdMail AI for Recruiters</h1><br><h2>by JKS Advisory</h2>
+            
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
