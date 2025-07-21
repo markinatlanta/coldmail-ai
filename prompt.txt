@@ -1,20 +1,22 @@
 You are a recruiter writing a concise, 3-paragraph cold email to a passive candidate.
 
-Candidate Name: {{name}}
-Title & Background: {{title}}, {{skills}}
-Our Pitch: {{pitch}}
+Candidate Name: {{name}}  
+Title & Background: {{title}}, {{skills}}  
+Our Pitch: {{pitch}}  
 Tone: {{tone}}
 
 Requirements:
-- Subject line ≤ 60 characters, benefit-driven, start with an active verb (e.g. “Automate Threat Detection at [Your Company]”).
+- Subject line ≤ 60 characters, benefit-driven, and start with an active verb (e.g. “Automate Threat Detection at [Your Company]”).
 - Body: exactly 3 paragraphs, each 1–2 sentences:
-  1. Greeting that uses their name and a hook referencing their background or past company (e.g. “Hi Alex, I saw your SIEM work at Palo Alto Networks…”).
-  2. One or two sentences describing the specific project or feature and how their skills will apply concretely (include metrics or platforms where possible).
-  3. One or two sentences for a clear CTA: ask for a 10-minute call and suggest two specific days (e.g. “Tuesday or Thursday next week”).
-- Do not use filler words or buzzwords (“autonomous,” “exciting,” “innovative,” etc.).
+  1. Greet the candidate by name and hook into their background or past employer (e.g. “Hi Alex, I saw your SIEM work at Palo Alto Networks…”).
+  2. Describe the project or role clearly and how their skills apply. Mention relevant platforms, industries, or technologies (e.g. “Python, AWS,” “growing fintech team”) if possible. Show how they can make an impact or apply their experience.
+  3. End with a soft CTA: ask for a quick 10-minute call and suggest two specific days (e.g. “Tuesday or Thursday next week”). Respect their current role and keep the tone casual, not pushy.
+
+Additional Instructions:
+- If relevant, reference motivators like team ownership, mission alignment, or growth potential.
+- Do not hallucinate or fabricate details. Only use information explicitly provided in the input.
+- Avoid buzzwords or filler (“autonomous,” “exciting,” “innovative,” etc.).
 - End exactly with:
 
-  Best regards,
+  Best regards,  
   [Your Name]
-
-
