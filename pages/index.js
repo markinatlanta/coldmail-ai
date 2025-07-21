@@ -150,21 +150,21 @@ export default function Home() {
                 </p>
                 <div className="flex justify-center gap-2">
                   <a
-                    href="https://payhip.com/buy/STARTER50"
+                    href="https://payhip.com/b/rWxFg"
                     target="_blank"
                     className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
                   >
                     Buy 50 Credits — $5
                   </a>
                   <a
-                    href="https://payhip.com/buy/PRO250"
+                    href="https://payhip.com/b/ag2C5"
                     target="_blank"
                     className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
                   >
                     Buy 250 Credits — $15
                   </a>
                   <a
-                    href="https://payhip.com/buy/RECRUITER500"
+                    href="https://payhip.com/b/G9Ajp"
                     target="_blank"
                     className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
                   >
